@@ -9,6 +9,9 @@ public class Candle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private LocalTime time;
 
     private TimeFrame timeFrame = TimeFrame.FIVE_MINUTES; // always 5 minutes for DB storage, and aggregate to HTFs in the service layer
