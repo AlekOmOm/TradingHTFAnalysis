@@ -17,7 +17,7 @@
 - **designed to provide** traders: 
   - a _simple and clear_ fundament for _developing their Daily Bias_:
     - analyzing market structure in order to identify Institutional Order FLow
-    - -> thus, increasing the probability of successfully identifying the Daily Order Flow 
+    - -> thus, increasing the probability of successfully identifying the Daily Order Flow
 
 ### Utility
 
@@ -50,6 +50,8 @@
 
 ### Table of Contents
 
+- [To-do](docs/to_do.md)
 - [Functional Requirements](docs/functional_requirements.md)
 - [Use Cases](docs/use_cases.md)
 - [System Architecture](docs/system_architecture.md)
+- 

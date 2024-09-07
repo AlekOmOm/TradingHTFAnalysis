@@ -69,7 +69,7 @@ public class CMEWebSocketClient {
             System.out.println("Received: " + payload);
 
             // Parse the incoming message and process it into 5m OHLC candles
-            candleProcessingService.processMarketData(payload);
+            candleProcessingService.update(payload);
         }
     }
 }
