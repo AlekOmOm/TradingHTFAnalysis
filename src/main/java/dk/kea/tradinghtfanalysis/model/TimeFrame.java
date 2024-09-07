@@ -1,22 +1,25 @@
 package dk.kea.tradinghtfanalysis.model;
 
 public enum TimeFrame {
-    FIVE_MINUTES,       // 0 ordinal
-    FIFTEEN_MINUTES,    // 1 ordinal
+    ONE_MINUTE,         // 0 ordinal
+    FIVE_MINUTES,      // 1 ordinal
+    FIFTEEN_MINUTES,   // 2 ordinal
 
-    ONE_HOUR,           // 2 ordinal
-    SIX_HOURS,          // 3 ordinal
+    ONE_HOUR,
+    SIX_HOURS,
 
-    ONE_DAY,            // 4 ordinal
+    ONE_DAY,
 
-    ONE_WEEK,           // 5 ordinal
+    ONE_WEEK,
 
-    ONE_MONTH,          // 6 ordinal
-    THREE_MONTHS;       // 7 ordinal
+    ONE_MONTH,
+    THREE_MONTHS;
+
 
     @Override
     public String toString() {
         return switch (this) {
+            case ONE_MINUTE -> "1 minute";
             case FIVE_MINUTES -> "5 minutes";
             case FIFTEEN_MINUTES -> "15 minutes";
 
