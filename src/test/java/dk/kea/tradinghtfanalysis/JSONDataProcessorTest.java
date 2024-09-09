@@ -1,10 +1,8 @@
 package dk.kea.tradinghtfanalysis;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.kea.tradinghtfanalysis.apiCME.ProcessMarketDataService;
+import dk.kea.tradinghtfanalysis.apiCME.dataProcessing.JSONDataProcessor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,10 +10,10 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProcessMarketDataServiceTest {
+class JSONDataProcessorTest {
 
     @InjectMocks
-    private ProcessMarketDataService processMarketDataService;
+    private JSONDataProcessor JSONDataProcessor;
 
     private final String sampleJson = "{\n" +
             "  \"messageType\": \"TOB\",\n" +
@@ -43,9 +41,9 @@ class ProcessMarketDataServiceTest {
     }
 
     @Test
-    void testProcessMarketData_withValidData() {
+    void testProcessJSONData_withValidData() {
         // Call the method to test
-        Map<LocalDateTime, Double> result = processMarketDataService.processMarketData(sampleJson);
+        Map<LocalDateTime, Double> result = JSONDataProcessor.processJSONData(sampleJson);
 
         // Verify the returned map contains the expected values
         assertFalse(result.isEmpty());
@@ -54,19 +52,19 @@ class ProcessMarketDataServiceTest {
     }
 
     @Test
-    void testProcessMarketData_withInvalidData() {
+    void testProcessJSONData_withInvalidData() {
         // Test with invalid JSON data
         String invalidJson = "{ \"invalid\": \"data\" }";
-        Map<LocalDateTime, Double> result = processMarketDataService.processMarketData(invalidJson);
+        Map<LocalDateTime, Double> result = JSONDataProcessor.processJSONData(invalidJson);
 
         // Verify that an empty map is returned
         assertTrue(result.isEmpty());
     }
 
     @Test
-    void testProcessMarketData_withEmptyData() {
+    void testProcessJSONData_withEmptyData() {
         // Test with empty JSON string
-        Map<LocalDateTime, Double> result = processMarketDataService.processMarketData("");
+        Map<LocalDateTime, Double> result = JSONDataProcessor.processJSONData("");
 
         // Verify that an empty map is returned
         assertTrue(result.isEmpty());
