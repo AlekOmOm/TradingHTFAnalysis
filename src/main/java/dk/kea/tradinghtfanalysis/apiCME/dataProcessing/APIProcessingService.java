@@ -1,29 +1,23 @@
-package dk.kea.tradinghtfanalysis.apiCME;
+package dk.kea.tradinghtfanalysis.apiCME.dataProcessing;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
 
-import dk.kea.tradinghtfanalysis.model.Candle;
 import dk.kea.tradinghtfanalysis.repository.CandleRepository;
 
-import org.springframework.scheduling.annotation.Scheduled;
-
 @Service
-public class CandleProcessingService {
+public class APIProcessingService {
 
 
     private final CandleRepository candleRepository;
-    private final NewCandleService newCandleService;
-    private final ProcessMarketDataService processMarketDataService;
+    private final PackagingSavingDataProcessor packagingSavingDataProcessor;
+    private final JSONDataProcessor JSONDataProcessor;
 
     @Autowired
-    public CandleProcessingService(CandleRepository candleRepository, NewCandleService newCandleService, ProcessMarketDataService processMarketDataService) {
+    public APIProcessingService(CandleRepository candleRepository, PackagingSavingDataProcessor packagingSavingDataProcessor, JSONDataProcessor JSONDataProcessor) {
         this.candleRepository = candleRepository;
-        this.newCandleService = newCandleService;
-        this.processMarketDataService = processMarketDataService;
+        this.packagingSavingDataProcessor = packagingSavingDataProcessor;
+        this.JSONDataProcessor = JSONDataProcessor;
     }
 
 
@@ -34,15 +28,13 @@ public class CandleProcessingService {
 
     public void update(String jsonData) {
 
-        newCandleService.streamPrice(processMarketDataService.processMarketData(jsonData));
+        packagingSavingDataProcessor.streamData(JSONDataProcessor.processJSONData(jsonData));
 
     }
 
-
-
-
-
-
+    public CandleRepository getCandleRepository() {
+        return candleRepository;
+    }
 
 
     // https://cmegroupclientsite.atlassian.net/wiki/spaces/EPICSANDBOX/pages/46475123/CME+Smart+Stream+Websockets+-+Top+of+Book
@@ -74,6 +66,7 @@ public class CandleProcessingService {
             ]
         }
      */
+
 
 }
 

@@ -26,10 +26,6 @@ public class Candle {
     private double close;
 
 
-
-
-
-
     // ------------------ Getters and Setters ------------------
 
     public Long getId() {
@@ -49,8 +45,8 @@ public class Candle {
     }
 
     public void setDateTime(LocalDateTime dateTime) {
-        this.date = dateTime.toLocalDate();
-        this.time = dateTime.toLocalTime();
+        setDate(dateTime.toLocalDate());
+        setTime(dateTime.toLocalTime());
     }
 
     public void setDate(LocalDate date) {
@@ -109,7 +105,8 @@ public class Candle {
     @Override
     public String toString() {
         return "Candle{" +
-                "time=" + time +
+                "date=" + date +
+                ", time=" + time +
                 ", timeFrame=" + timeFrame +
                 ", open=" + open +
                 ", high=" + high +

@@ -35,4 +35,8 @@ public enum TimeFrame {
         };
     }
 
+    // get and set
+
+
+
 }

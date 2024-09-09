@@ -1,7 +1,6 @@
-package dk.kea.tradinghtfanalysis.apiCME;
+package dk.kea.tradinghtfanalysis.apiCME.dataProcessing;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -10,12 +9,12 @@ import java.util.Collections;
 import java.util.Map;
 
 @Service
-public class ProcessMarketDataService {
+public class JSONDataProcessor {
 
     LocalDateTime startTime;
 
     // Parse the TOB data from the WebSocket
-    public Map<LocalDateTime, Double> processMarketData(String jsonData) {
+    public Map<LocalDateTime, Double> processJSONData(String jsonData) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             JsonNode rootNode = objectMapper.readTree(jsonData);
@@ -33,7 +32,7 @@ public class ProcessMarketDataService {
             LocalDateTime time = LocalDateTime.parse(timestampStr, DateTimeFormatter.ISO_DATE_TIME);
 
 
-            messageScheduled(time, price);
+//            messageScheduled(time, price);
             return Map.of(time, price); // Time & Price
 
         } catch (Exception e) {
