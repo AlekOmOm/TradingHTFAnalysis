@@ -1,5 +1,6 @@
 package dk.kea.tradinghtfanalysis.apiCME.connection;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.HttpHeaders;
@@ -42,7 +43,7 @@ public class OAuthClient {
                 // Extract the token from the response
                 System.out.println("Token request successful, processing response...");
                 String token = extractTokenFromResponse(response.getBody()); // Assuming a method to parse the response
-                System.out.println("Token received: " + token);
+                System.out.println("Token received");
                 return token;
             } else {
                 System.err.println("Error: Received non-OK HTTP status: " + response.getStatusCode());
@@ -54,11 +55,9 @@ public class OAuthClient {
         }
     }
 
-    // Dummy method to simulate token extraction from response, replace with actual JSON parsing logic
     private static String extractTokenFromResponse(String responseBody) {
-        // Simulating extraction
         System.out.println("Parsing token from response...");
-        System.out.println(" Response: " + responseBody);
-        return "dummy_token"; // Replace with actual token extraction logic
+        JSONObject jsonObject = new JSONObject(responseBody);
+        return jsonObject.getString("access_token");
     }
 }
