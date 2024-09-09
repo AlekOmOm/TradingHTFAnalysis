@@ -1,4 +1,4 @@
-package dk.kea.tradinghtfanalysis.apiCME;
+package dk.kea.tradinghtfanalysis.apiCME.connection;
 
 import org.springframework.stereotype.Service;
 

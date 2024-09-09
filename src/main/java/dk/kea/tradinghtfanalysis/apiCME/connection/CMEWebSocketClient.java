@@ -1,5 +1,6 @@
-package dk.kea.tradinghtfanalysis.apiCME;
+package dk.kea.tradinghtfanalysis.apiCME.connection;
 
+import dk.kea.tradinghtfanalysis.apiCME.dataProcessing.APIProcessingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -19,7 +20,7 @@ public class CMEWebSocketClient {
     private TokenManager tokenManager;
 
     @Autowired
-    private CandleProcessingService candleProcessingService; // Assuming you have a service to handle candle data
+    private APIProcessingService APIProcessingService; // Assuming you have a service to handle candle data
 
     public void connect() {
         StandardWebSocketClient client = new StandardWebSocketClient();
@@ -69,7 +70,7 @@ public class CMEWebSocketClient {
             System.out.println("Received: " + payload);
 
             // Parse the incoming message and process it into 5m OHLC candles
-            candleProcessingService.update(payload);
+            APIProcessingService.update(payload);
         }
     }
 }

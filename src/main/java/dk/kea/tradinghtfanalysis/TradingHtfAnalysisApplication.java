@@ -8,6 +8,7 @@ public class TradingHtfAnalysisApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TradingHtfAnalysisApplication.class, args);
+
     }
 
 }

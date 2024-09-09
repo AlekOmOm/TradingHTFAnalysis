@@ -1,7 +1,6 @@
-package dk.kea.tradinghtfanalysis.apiCME;
+package dk.kea.tradinghtfanalysis.apiCME.connection;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpEntity;
@@ -58,6 +57,8 @@ public class OAuthClient {
     // Dummy method to simulate token extraction from response, replace with actual JSON parsing logic
     private static String extractTokenFromResponse(String responseBody) {
         // Simulating extraction
+        System.out.println("Parsing token from response...");
+        System.out.println(" Response: " + responseBody);
         return "dummy_token"; // Replace with actual token extraction logic
     }
 }
